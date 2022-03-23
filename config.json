@@ -1,6 +1,6 @@
 {
-    "email": "",
-    "password": "",
+    "email": "youremail@domain.com",
+    "password": "yourpassword",
     "keywords": "Machine Learning Engineer",
     "location": "Germany",
     "driver_path": "driver/chromedriver"
