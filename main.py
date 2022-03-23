@@ -49,8 +49,6 @@ class EasyApplyLinkedin:
         search_location = self.driver.find_element(By.XPATH, "//input[starts-with(@id, 'jobs-search-box-location')]")
         search_location.clear()
         search_location.send_keys(self.location)
-        search_location.send_keys(Keys.RETURN)
-        
         
         search_link = self.driver.find_element(By.XPATH, "//button[starts-with(@class, 'jobs-search-box__submit-button')]")
         search_link.click()
