@@ -39,36 +39,38 @@ class EasyApplyLinkedin:
         #Job Section 
         job_link = self.driver.find_element(By.LINK_TEXT, 'Jobs')
         job_link.click()
-        time.sleep(3)
+        self.driver.implicitly_wait(2)
 
         #Keyword and location search
         search_keyword = self.driver.find_element(By.XPATH, "//input[starts-with(@id, 'jobs-search-box-keyword')]")
         search_keyword.clear()
         search_keyword.send_keys(self.keywords)
 
-        search_location = self.driver.find_element(By.XPATH, "//input[starts-with(@id, 'jobs-search-box-location')]")
+        self.driver.implicitly_wait(5)
+        search_location = self.driver.find_element(By.XPATH, "//input[starts-with(@id, 'jobs-search-box-location-id')]")
         search_location.clear()
         search_location.send_keys(self.location)
+        search_keyword.send_keys(Keys.RETURN)
         
-        search_link = self.driver.find_element(By.XPATH, "//button[starts-with(@class, 'jobs-search-box__submit-button')]")
-        search_link.click()
+        # search_link = self.driver.find_element(By.XPATH, "//button[starts-with(@class, 'jobs-search-box__submit-button')]")
+        # search_link.click()
+        
+        # second_search_link = self.driver.find_element(By.XPATH, "//a[starts-with(@class, 'app-aware-link')]")
+        # second_search_link.click()
     
     def filter(self):
         """Filter the job"""
-        time.sleep(5)
+        
         all_filter_button = self.driver.find_element(By.XPATH, "//button[starts-with(@aria-label, 'Show all filters')]")
         all_filter_button.click()
-        time.sleep(2)
+        self.driver.implicitly_wait(2)
         mid_senior_level_button = self.driver.find_element(By.XPATH, "//label[@for='advanced-filter-experience-5']")
         mid_senior_level_button.click()
-        time.sleep(2)
-        show_result_button = self.driver.find_element(By.XPATH, "//li-icon[@class='artdeco-button__text']")
+        self.driver.implicitly_wait(1)
+        show_result_button = self.driver.find_element(By.XPATH, "//button[starts-with(@class, 'reusable-search-filters-buttons')]")
         show_result_button.click()
-        # time.sleep(2)
-        # close_button = self.driver.find_element(By.XPATH, "//li-icon[@class='artdeco-button__icon']")
-        # close_button.click()
 
-
+        self.driver.implicitly_wait(5)
 
 
 if __name__ == '__main__':
@@ -77,7 +79,7 @@ if __name__ == '__main__':
         data = json.load(file)
     bot = EasyApplyLinkedin(data)
     bot.login_linkedin()
-    time.sleep(4)
+    bot.driver.implicitly_wait(2)
     bot.job_search()
-    time.sleep(2)
+    bot.driver.implicitly_wait(2)
     bot.filter()
