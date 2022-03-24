@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-import time
 import json
 
 class EasyApplyLinkedin:
@@ -61,10 +60,11 @@ class EasyApplyLinkedin:
     def filter(self):
         """Filter the job"""
         
-        all_filter_button = self.driver.find_element(By.XPATH, "//button[starts-with(@aria-label, 'Show all filters')]")
+        self.driver.implicitly_wait(2)
+        all_filter_button = self.driver.find_element(By.XPATH, "//button[starts-with(@class, 'artdeco-pill artdeco-pill--slate artdeco-pill--choice artdeco-pill--2 search-reusables__filter-pill-button')]")
         all_filter_button.click()
         self.driver.implicitly_wait(2)
-        mid_senior_level_button = self.driver.find_element(By.XPATH, "//label[@for='advanced-filter-experience-5']")
+        mid_senior_level_button = self.driver.find_element(By.XPATH, "//label[@for='advanced-filter-experience-4']")
         mid_senior_level_button.click()
         self.driver.implicitly_wait(1)
         show_result_button = self.driver.find_element(By.XPATH, "//button[starts-with(@class, 'reusable-search-filters-buttons')]")
